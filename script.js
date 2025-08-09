@@ -102,62 +102,65 @@ const room2 = () => {
     }
 }
 
-
 const createRoom = () => {
-    let count = leftSection.childElementCount;
-    let roomNumber = count + 1; // Room numbering starts after existing rooms
+    let count = leftSection.childElementCount
+    let roomNumber = count - 1
+    
+    let chat3Div = document.createElement('div')
+    chat3Div.className = chat3-rooms room${roomNumber} chat${roomNumber}
+    leftSection.appendChild(chat3Div)
 
-    // Left section tab
-    let chatDiv = document.createElement('div');
-    chatDiv.className = `chat-rooms room${roomNumber}`;
-    leftSection.appendChild(chatDiv);
+    rightSection.appendChild(Room3)
+    Room3.className = room${roomNumber}
 
-    // Right section room
-    let newRoom = document.createElement('div');
-    newRoom.className = `room${roomNumber} display-none`;
-    rightSection.appendChild(newRoom);
+    let chat3H2 = document.createElement('h2')
+    chat3H2.className = 'chat3-h2'
+    chat3Div.appendChild(chat3H2)
 
-    // Title in left tab
-    let chatH2 = document.createElement('h2');
-    chatH2.className = 'chat-h2';
-    chatH2.innerHTML = `Chat Room ${roomNumber}`;
-    chatDiv.appendChild(chatH2);
+    if (count > 0) {
+        leftSection.insertBefore(chat3Div, leftSection.children[count - 1])
+        chat3H2.innerHTML = chat Room${count - 1}
+    }
 
-    // Status paragraph
-    let chatRoomP = document.createElement('p');
-    chatRoomP.className = `chat-room-p${roomNumber}`;
-    chatDiv.appendChild(chatRoomP);
+    chatRoomP3.className = chat-room-p${roomNumber}
 
-    // Track in roomsObject
-    roomsObject[`rooms${roomNumber}`] = false;
+    chat3Div.addEventListener('click', () => {
+        let allChatTabs = document.querySelectorAll('.chat3-rooms')
+        allChatTabs.forEach(tab => {
+            tab.classList.remove('bgyellow')
+            tab.classList.add('bgwhite')
+        })
 
-    // On click -> activate this room
-    chatDiv.addEventListener('click', () => {
-        // Hide all rooms
-        rightSection.querySelectorAll('div[class^="room"]').forEach(r => {
-            r.classList.add('display-none');
-        });
+        roomsObject[rooms${roomNumber}] = true
 
-        // Remove highlight from all tabs
-        leftSection.querySelectorAll('.chat-rooms').forEach(tab => {
-            tab.classList.remove('bgyellow');
-            tab.classList.add('bgwhite');
-        });
+        if (roomsObject[rooms${roomNumber}]) {
+            room1ChildsDisplay = false
+            room2ChildsDisplay = false
 
-        // Show this room
-        newRoom.classList.remove('display-none');
-        chatDiv.classList.remove('bgwhite');
-        chatDiv.classList.add('bgyellow');
+            if (userInput.value === '') {
+                console.log(Room3.innerHTML = chat Room ${count - 1})
+            }
 
-        // Update tracking
-        Object.keys(roomsObject).forEach(k => roomsObject[k] = false);
-        roomsObject[`rooms${roomNumber}`] = true;
+            chat3Div.appendChild(chatRoomP3)
 
-        // Reset other indicators
-        leftSection.querySelectorAll('p[class^="chat-room-p"]').forEach(p => p.innerHTML = '');
-        chatRoomP.innerHTML = 'online';
-    });
-};
+            Room1.className = 'display-none'
+            Room2.className = 'display-none'
+            Room3.className = 'display-block'
+
+            chat1.className = 'chat1 bgwhite'
+            chat2.className = 'chat2 bgwhite'
+            chat3Div.className = chat3-rooms room3 chat${roomNumber}
+            chat3Div.classList.remove('bgwhite')
+            chat3Div.classList.add('bgyellow')
+
+            chatRoomP1.innerHTML = ''
+            chatRoomP2.innerHTML = ''
+            chatRoomP3.innerHTML = 'online'
+        }
+    })
+}
+
+
 
 // sendMessageToRoom function
 const sendMessageToRoom = () => {
