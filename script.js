@@ -101,8 +101,10 @@ const room2 = () => {
         chatRoomP1.innerHTML = 'online'
     }
 }
+
 const createRoom = (number) => {
- let count = leftSection.childElementCount
+
+    let count = leftSection.childElementCount
 
     number = count - 1
     console.log('number is ', number)
