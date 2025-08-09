@@ -107,8 +107,6 @@ const room2 = () => {
 const createRoom = (number) => {
 
     let count = leftSection.childElementCount
-
-    number = count - 1
     
     let chat3Div = document.createElement('div')
     chat3Div.className = chat3-rooms room${number} chat${number}
