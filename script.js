@@ -102,6 +102,8 @@ const room2 = () => {
     }
 }
 
+
+// createRoom function
 const createRoom = (number) => {
 
     let count = leftSection.childElementCount
@@ -173,17 +175,17 @@ const createRoom = (number) => {
 
 
 
+
 // sendMessageToRoom function
 const sendMessageToRoom = () => {
-    
     let count;
-
+    
     if (room1ChildsDisplay) count = Room1.childElementCount
     else if (room2ChildsDisplay) count = Room2.childElementCount
     else if (roomsObject.rooms3) count = Room3.childElementCount
-
+    
     if (userInput.value === '') return
-
+    
     let newElementDiv = document.createElement('div')
     let newElementCont = document.createElement('div')
     let imgAndSeenCont = document.createElement('div')
@@ -199,14 +201,14 @@ const sendMessageToRoom = () => {
     let findSeen = document.createElement('p')
     findSeen.innerHTML = 'Deliever'
     showTime.innerHTML = (new Date().toLocaleTimeString())
-
+    
     newElementCont.appendChild(newElement)
     newElementCont.appendChild(showTime)
     newElementCont.appendChild(findSeen)
     newElementDiv.appendChild(newElementCont)
     imgAndSeenCont.appendChild(deleteImg)
     newElementDiv.appendChild(imgAndSeenCont)
-
+    
     // shift key apply
     addEventListener('keydown', (f) => {
         if (f.key === 'Shift' && imgAndSeenCont.children.length === 1) {
@@ -220,22 +222,24 @@ const sendMessageToRoom = () => {
             imgAndSeenCont.appendChild(seenTime)
             console.log('right sectionchild is ', imgAndSeenCont.children.length)
 
+        } else {
+            console.log('shift will not work')
         }
     })
 
     // Message content
     newElement.innerHTML = count % 2 === 0
-        ? `${userName} : ${userInput.value}`
-        : `${friend} : ${userInput.value}`
-
+    ? `${userName} : ${userInput.value}`
+    : `${friend} : ${userInput.value}`
+    
     newElementDiv.className = count % 2 === 0 ? 'new-elem-div' : 'new-elem-div2'
-
+    
     // Append to the right room
     if (room1ChildsDisplay) Room1.appendChild(newElementDiv)
-    else if (room2ChildsDisplay) Room2.appendChild(newElementDiv)
+        else if (room2ChildsDisplay) Room2.appendChild(newElementDiv)
     else if (roomsObject.rooms3) Room3.appendChild(newElementDiv)
 
-    userInput.value = ''
+userInput.value = ''
     checkHeight()
 }
 
@@ -243,7 +247,7 @@ sendButton.addEventListener('click', sendMessageToRoom)
 
 userInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessageToRoom()
-})
+    })
 
 
 // seen operation
@@ -257,7 +261,7 @@ userInput.addEventListener('input', () => {
         count = Room3.childElementCount
     }
     if (count % 2 == 0) {
-
+        
         if (room1ChildsDisplay) {
             console.log(count)
             chatRoomP1.innerHTML = `${userName} is typing`
@@ -276,6 +280,7 @@ userInput.addEventListener('input', () => {
             }, 3000)
         }
     } else {
+        console.log(count)
         if (room1ChildsDisplay) {
             chatRoomP1.innerHTML = `${friend} is typing`
             setTimeout(() => {
@@ -293,12 +298,12 @@ userInput.addEventListener('input', () => {
             }, 3000)
         }
     }
-
+    
 })
 
 // scroll to bottom when height increase operation
 const checkHeight = () => {
-    if (rightSection.scrollHeight > 640 || rightSection.scrollHeight > 470) {
+    if (rightSection.scrollHeight > 640) {
 
         rightSection.scrollTo({
             top: rightSection.scrollHeight,
