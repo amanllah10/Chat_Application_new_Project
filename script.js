@@ -102,16 +102,18 @@ const room2 = () => {
     }
 }
 
-const createRoom = () => {
-    let count = leftSection.childElementCount
-    let roomNumber = count - 1
-    
+ let count = leftSection.childElementCount
+
+    number = count - 1
+    console.log('number is ', number)
+
     let chat3Div = document.createElement('div')
-    chat3Div.className = chat3-rooms room${roomNumber} chat${roomNumber}
+    chat3Div.className = `chat3-rooms room${number} chat${number}`
     leftSection.appendChild(chat3Div)
 
+    Room3.className = `room${number}`
     rightSection.appendChild(Room3)
-    Room3.className = room${roomNumber}
+    Room3.innerHTML = `Room ${number} chat`
 
     let chat3H2 = document.createElement('h2')
     chat3H2.className = 'chat3-h2'
@@ -119,43 +121,50 @@ const createRoom = () => {
 
     if (count > 0) {
         leftSection.insertBefore(chat3Div, leftSection.children[count - 1])
-        chat3H2.innerHTML = chat Room${count - 1}
+        chat3H2.innerHTML = `chat Room${count - 1}`
     }
-
-    chatRoomP3.className = chat-room-p${roomNumber}
-
+    
+    chatRoomP3.className = `chat-room-p${number}`
+    
+    
     chat3Div.addEventListener('click', () => {
+        
         let allChatTabs = document.querySelectorAll('.chat3-rooms')
         allChatTabs.forEach(tab => {
             tab.classList.remove('bgyellow')
             tab.classList.add('bgwhite')
         })
 
-        roomsObject[rooms${roomNumber}] = true
+        roomsObject[`rooms${number}`] = true
 
-        if (roomsObject[rooms${roomNumber}]) {
+        if (roomsObject[`rooms${number}`]) {
             room1ChildsDisplay = false
             room2ChildsDisplay = false
-
+            roomsObject[`rooms${number}`] = true
+            
             if (userInput.value === '') {
-                console.log(Room3.innerHTML = chat Room ${count - 1})
+                console.log(Room3.innerHTML = `chat Room ${count - 1}`)
             }
 
             chat3Div.appendChild(chatRoomP3)
-
+            
             Room1.className = 'display-none'
             Room2.className = 'display-none'
             Room3.className = 'display-block'
-
+            
             chat1.className = 'chat1 bgwhite'
             chat2.className = 'chat2 bgwhite'
-            chat3Div.className = chat3-rooms room3 chat${roomNumber}
+            chat3Div.className = `chat3-rooms room3 chat${number}`
             chat3Div.classList.remove('bgwhite')
             chat3Div.classList.add('bgyellow')
+            
 
             chatRoomP1.innerHTML = ''
             chatRoomP2.innerHTML = ''
             chatRoomP3.innerHTML = 'online'
+            
+        } else {
+            
         }
     })
 }
