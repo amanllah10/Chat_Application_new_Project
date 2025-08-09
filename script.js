@@ -107,13 +107,15 @@ const room2 = () => {
 const createRoom = (number) => {
 
     let count = leftSection.childElementCount
+
+    let roomnum = count - 1
     
     let chat3Div = document.createElement('div')
-    chat3Div.className = chat3-rooms room${number} chat${number}
+    chat3Div.className = chat3-rooms room${roomnum} chat${roomnum}
     leftSection.appendChild(chat3Div)
 
     rightSection.appendChild(Room3)
-    Room3.className = room${number}
+    Room3.className = room${roomnum}
 
     let chat3H2 = document.createElement('h2')
     chat3H2.className = 'chat3-h2'
@@ -124,7 +126,7 @@ const createRoom = (number) => {
         chat3H2.innerHTML = chat Room${count - 1}
     }
 
-    chatRoomP3.className = chat-room-p${number}
+    chatRoomP3.className = chat-room-p${roomnum}
 
 
     chat3Div.addEventListener('click', () => {
@@ -135,12 +137,12 @@ const createRoom = (number) => {
             tab.classList.add('bgwhite')
         })
 
-        roomsObject[rooms${number}] = true
+        roomsObject[rooms${roomnum}] = true
 
-        if (roomsObject[rooms${number}]) {
+        if (roomsObject[rooms${roomnum}]) {
             room1ChildsDisplay = false
             room2ChildsDisplay = false
-            roomsObject[rooms${number}] = true
+            roomsObject[rooms${roomnum}] = true
 
             if (userInput.value === '') {
                 console.log(Room3.innerHTML = chat Room ${count - 1})
@@ -154,7 +156,7 @@ const createRoom = (number) => {
 
             chat1.className = 'chat1 bgwhite'
             chat2.className = 'chat2 bgwhite'
-            chat3Div.className = chat3-rooms room3 chat${number}
+            chat3Div.className = chat3-rooms room3 chat${roomnum}
             chat3Div.classList.remove('bgwhite')
             chat3Div.classList.add('bgyellow')
 
