@@ -1,212 +1,160 @@
-/* ===== Reset ===== */
+/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* ===== Body ===== */
-body {
-    background: #ece5dd;
-    height: 100vh;
+/* ===== MAIN SCREEN ===== */
+.chat-application-screen {
+    display: grid;
+    width: 98%;
+    height: 95vh;
+    margin: 10px;
+    grid-gap: 15px;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "left-section right-section"
+        "left-section footer";
+}
+
+/* ===== COMMON GRID ===== */
+.grid-keys {
+    border: 1px solid black;
+}
+
+/* ===== HEADER ===== */
+#header {
+    grid-area: header;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* ===== App Wrapper ===== */
-.chat-application-wrapper {
-    width: 100%;
-    max-width: 1100px;
-    height: 90vh;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* ===== Screen Layout ===== */
-.chat-application-screen {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    grid-template-rows: 60px 1fr 60px;
-    grid-template-areas:
-        "header header"
-        "left right"
-        "footer footer";
-    height: 100%;
-}
-
-/* ===== Header ===== */
-#header {
-    grid-area: header;
-    background: #075e54;
+    background: dimgrey;
     color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
 }
 
-.main-heading {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-/* ===== Left Section (Chat List) ===== */
-.left-sections {
-    grid-area: left;
-    background: #f0f2f5;
-    border-right: 1px solid #ddd;
+/* ===== LEFT SECTION ===== */
+#left-section {
+    grid-area: left-section;
+    height: 82vh;
     overflow-y: auto;
 }
 
-.chat-room-h1 {
-    padding: 15px;
-    font-size: 18px;
-    color: #333;
-}
-
-/* Chat Room Box */
-.chat1,
-.chat2,
-.chat-create {
-    padding: 15px;
-    cursor: pointer;
-    transition: background 0.2s;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.chat1:hover,
-.chat2:hover {
-    background: #e9edef;
-}
-
-.rooms {
-    font-size: 16px;
-    color: #111;
-}
-
-/* Create Room Button */
-.new-chat {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: #25d366;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.new-chat:hover {
-    background: #1ebe5d;
-}
-
-/* ===== Right Section (Chat Area) ===== */
-.right-section {
-    grid-area: right;
-    background: #efeae2;
+/* ===== RIGHT SECTION ===== */
+#right-section {
+    grid-area: right-section;
+    height: 73vh;
     padding: 20px;
     overflow-y: auto;
 }
 
-/* Chat Header inside room */
-.room1,
-.room2 {
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: 7px;
-    width: fit-content;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== Footer ===== */
-.footer {
+/* ===== FOOTER ===== */
+#footer {
     grid-area: footer;
-    background: #f0f2f5;
+    height: 7vh;
     display: flex;
-    align-items: center;
-    padding: 10px;
     gap: 10px;
 }
 
-/* Input */
-.user-input {
-    flex: 1;
-    padding: 12px 15px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 14px;
+/* ===== INPUT & BUTTON ===== */
+input[type=text] {
+    width: 100%;
+    font-size: 18px;
+    padding: 8px;
 }
 
-/* Send Button */
-.send-button {
-    background: #25d366;
-    border: none;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 50%;
+button {
+    width: 100px;
+}
+
+/* ===== CHAT LIST ===== */
+.chat1,
+.chat2,
+.chat3-rooms {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 5px;
     cursor: pointer;
-    font-size: 14px;
 }
 
-.send-button:hover {
-    background: #1ebe5d;
+.chat-room-h1 {
+    padding: 15px;
 }
 
-/* ===== Scrollbar ===== */
-::-webkit-scrollbar {
-    width: 6px;
+/* ===== MESSAGE BUBBLES ===== */
+.new-elem-div,
+.new-elem-div2 {
+    max-width: 70%;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 20px;
+    border: 1px solid black;
+    word-wrap: break-word;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 5px;
+.new-elem-div {
+    background: aqua;
 }
 
-/* ===============================
-   Responsive (Mobile View)
-   =============================== */
+.new-elem-div2 {
+    background: greenyellow;
+    margin-left: auto;
+}
 
+/* ===== ROOM VISIBILITY ===== */
+.room1,
+.room2 {
+    display: none;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+/* ===== STATES ===== */
+.bgyellow {
+    background: yellow;
+}
+
+.bgwhite {
+    background: white;
+}
+
+/* ===== DELETE ICON ===== */
+.delete-img {
+    width: 30px;
+    height: 30px;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-
-    .chat-application-wrapper {
-        height: 100vh;
-        border-radius: 0;
-    }
-
     .chat-application-screen {
-        grid-template-columns: 100%;
-        grid-template-rows: 60px 1fr 60px;
+        grid-template-columns: 1fr;
         grid-template-areas:
             "header"
-            "right"
+            "right-section"
             "footer";
     }
 
-    /* Hide left chat list on mobile */
-    .left-sections {
+    #left-section {
         display: none;
     }
 
-    /* Right section full width */
-    .right-section {
-        padding: 15px;
+    .new-elem-div,
+    .new-elem-div2 {
+        max-width: 90%;
+        font-size: 14px;
     }
 
-    .main-heading {
-        font-size: 18px;
-    }
-
-    .user-input {
-        font-size: 13px;
-        padding: 10px 14px;
-    }
-
-    .send-button {
-        padding: 10px 14px;
+    input[type=text] {
+        font-size: 14px;
     }
 }
