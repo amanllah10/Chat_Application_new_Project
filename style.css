@@ -1,358 +1,212 @@
-/* Whole body styling */
+/* ===== Reset ===== */
 * {
-    padding: 0px;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
-/* chat application screen styling */
-.chat-application-screen {
-    display: grid;
-    width: 98%;
-    height: 95vh;
-    grid-template-areas:
-        'header header header header'
-        'left-section right-section right-section right-section'
-        'left-section footer  footer footer'
-    ;
-    margin: 10px;
-    grid-gap: 10px;
-    box-sizing: border-box;
-    grid-template-columns: 300px 1fr 1fr 1fr;
-    grid-gap: 20px;
-}
-
-/* grid keys styling */
-.grid-keys {
-    border: 1px solid black;
-}
-
-/* header styling */
-#header {
-    grid-area: header;
+/* ===== Body ===== */
+body {
+    background: #ece5dd;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    background-color: dimgrey;
-    color: white;
 }
 
-/* left section styling */
-#left-section {
-    grid-area: left-section;
-    height: 82vh;
-    overflow-x: scroll;
-}
-
-/* Right section styling */
-#right-section {
-    grid-area: right-section;
-    height: 73vh;
-    padding: 20px;
-    overflow-x: scroll;
-}
-
-/* Footer styling */
-#footer {
-    grid-area: footer;
-    height: 7vh;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid white !important;
-}
-
-/* button styling */
-button {
-    width: 100px;
-    margin-left: 10px;
-}
-
-/* input styling */
-input[type=text] {
+/* ===== App Wrapper ===== */
+.chat-application-wrapper {
     width: 100%;
+    max-width: 1100px;
+    height: 90vh;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Screen Layout ===== */
+.chat-application-screen {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-areas:
+        "header header"
+        "left right"
+        "footer footer";
     height: 100%;
-    border: 1px solid black;
-    font-size: 30px;
-    padding: 7px;
 }
 
-/* chat room h1 styling */
+/* ===== Header ===== */
+#header {
+    grid-area: header;
+    background: #075e54;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.main-heading {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ===== Left Section (Chat List) ===== */
+.left-sections {
+    grid-area: left;
+    background: #f0f2f5;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
 .chat-room-h1 {
-    padding: 20px;
+    padding: 15px;
+    font-size: 18px;
+    color: #333;
 }
 
-/* rooms */
-.rooms {
-    padding: 5px;
-}
-
-/* chat3 rooms */
-.chat3-rooms {
-    padding: 5px;
-}
-
-/* chat1 and chat2 styling */
+/* Chat Room Box */
 .chat1,
-.chat2 {
-    border: 1px solid black;
-    margin: 15px;
+.chat2,
+.chat-create {
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* chat3 h2 styling */
-.chat3-h2 {
-    padding: 5px;
+.chat1:hover,
+.chat2:hover {
+    background: #e9edef;
 }
 
-
-/* chat3 to chat9 styling */
-.chat3,
-.chat4,
-.chat5,
-.chat6,
-.chat7,
-.chat8,
-.chat9 {
-    border: 1px solid black;
-    margin: 15px;
+.rooms {
+    font-size: 16px;
+    color: #111;
 }
 
-
-/* new elem div styling mean right section left side */
-.new-elem-div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: aqua;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: aqua;
-    padding: 7px;
-    margin: 20px;
-    height: auto;
-    width: 600px;
+/* Create Room Button */
+.new-chat {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #25d366;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-/* new elem div2 styling mean right section Right side */
-.new-elem-div2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: greenyellow;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: greenyellow;
-    padding: 7px;
-    position: relative;
-    left: 30vw;
-    margin: 20px;
-    height: auto;
-    width: 600px;
+.new-chat:hover {
+    background: #1ebe5d;
 }
 
-/* room1 and room2 styling */
+/* ===== Right Section (Chat Area) ===== */
+.right-section {
+    grid-area: right;
+    background: #efeae2;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Chat Header inside room */
 .room1,
 .room2 {
-    display: none;
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 7px;
+    width: fit-content;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* display none styling */
-.display-none {
-    display: none;
-}
-
-/* display block */
-.display-block {
-    display: block;
-}
-
-/* delete img styling */
-.delete-img {
-    width: 40px;
-    height: 40px;
-}
-
-/* background yellow applying */
-.bgyellow {
-    background-color: yellow;
-}
-
-/* background white applying */
-.bgwhite {
-    background-color: white;
-}
-
-/* chat room p1 to chat room p10 styling */
-.chat-room-p1,
-.chat-room-p2,
-.chat-room-p3,
-.chat-room-p4,
-.chat-room-p5,
-.chat-room-p6,
-.chat-room-p7,
-.chat-room-p8,
-.chat-room-p9,
-.chat-room-p10 {
-    padding: 5px;
-}
-
-/* img seen cont styling */
-.img-seen-cont {
+/* ===== Footer ===== */
+.footer {
+    grid-area: footer;
+    background: #f0f2f5;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
 }
 
-/* new chat styling */
-.new-chat {
-    margin-top: 50px;
-    font-size: 20px;
-    width: auto;
+/* Input */
+.user-input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
 }
 
-
-/* Media query applying */
-@media(max-width:1400px) {
-    .new-elem-div {
-        width: 500px;
-    }
-
-    .new-elem-div2 {
-        width: 350px;
-    }
+/* Send Button */
+.send-button {
+    background: #25d366;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-@media(max-width:1050px) {
-    .left-sections {
-        height: 22vh !important;
-    }
+.send-button:hover {
+    background: #1ebe5d;
+}
 
-    .new-elem-div {
-        width: 500px;
-    }
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
 
-    .new-elem-div2 {
-        width: 550px;
-    }
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
 
-    .chats-cont {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+/* ===============================
+   Responsive (Mobile View)
+   =============================== */
 
-    #right-section {
-        height: 50vh !important;
-        width: 99%;
-    }
+@media (max-width: 768px) {
 
-    .new-elem-div2 {
-        margin-right: 20px;
-        position: relative;
-        left: 25vw;
+    .chat-application-wrapper {
+        height: 100vh;
+        border-radius: 0;
     }
 
     .chat-application-screen {
-        grid-template-columns: 0px 1fr 1fr 1fr;
+        grid-template-columns: 100%;
+        grid-template-rows: 60px 1fr 60px;
         grid-template-areas:
-            'header header header header'
-            'left-section left-section left-section left-section'
-            'right-section right-section right-section right-section'
-            'footer footer  footer footer'
-        ;
+            "header"
+            "right"
+            "footer";
     }
 
-
-    .new-chat {
-        margin-top: 0px;
-        padding: 7px !important;
-    }
-}
-
-
-
-@media(max-width:800px) {
+    /* Hide left chat list on mobile */
     .left-sections {
-        font-size: 13px;
+        display: none;
     }
 
-    .new-chat {
-        font-size: 15px;
+    /* Right section full width */
+    .right-section {
+        padding: 15px;
     }
 
-    .new-elem-div {
-        width: 350px;
-    }
-
-    .new-elem-div2 {
-        width: 400px;
-    }
-}
-
-@media(max-width:620px) {
-
-    .chat-room-h1 {
-        padding: 10px;
-    }
-
-    .left-sections {
-        font-size: 10px;
-    }
-
-    .chats-cont {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .chat-create {
-        display: inline-block;
-    }
-
-    .new-elem-div {
-        width: 250px !important;
-        font-size: 15px !important;
-    }
-
-    .new-elem-div2 {
-        width: 270px !important;
-        font-size: 15px !important;
-    }
-
-    input[type=text] {
-        font-size: 15px !important;
-    }
-
-    .new-chat {
-        margin-bottom: 5px !important;
-    }
-
-}
-
-@media(max-width:430px) {
     .main-heading {
-        font-size: 25px;
+        font-size: 18px;
     }
 
-    .new-elem-div {
-        width: 220px !important;
-        margin: 0px !important;
-        margin-top: 25px !important;
-        margin-bottom: 25px !important;
-        font-size: 10px !important;
+    .user-input {
+        font-size: 13px;
+        padding: 10px 14px;
     }
 
-    .new-elem-div2 {
-        width: 250px !important;
-        margin: 0px !important;
-        font-size: 10px !important;
-        left: 5vw;
-        width: 250px;
+    .send-button {
+        padding: 10px 14px;
     }
-
-    .footer{
-        width: 95%;
-    }
-
 }
