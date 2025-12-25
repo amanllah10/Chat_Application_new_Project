@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ===== MAIN SCREEN ===== */
@@ -11,7 +11,7 @@
     display: grid;
     width: 98%;
     height: 95vh;
-    margin: 10px;
+    margin: 10px auto;
     grid-gap: 15px;
     grid-template-columns: 300px 1fr;
     grid-template-rows: auto 1fr auto;
@@ -19,11 +19,10 @@
         "header header"
         "left-section right-section"
         "left-section footer";
-}
-
-/* ===== COMMON GRID ===== */
-.grid-keys {
-    border: 1px solid black;
+    background: #f0f2f5; /* WhatsApp like bg */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* ===== HEADER ===== */
@@ -31,25 +30,99 @@
     grid-area: header;
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background: dimgrey;
+    padding: 0 20px;
+    background: #075e54; /* WhatsApp green */
     color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* ===== LEFT SECTION ===== */
+/* ===== LEFT SECTION (Chats List) ===== */
 #left-section {
     grid-area: left-section;
     height: 82vh;
     overflow-y: auto;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #bbb #fff;
 }
 
-/* ===== RIGHT SECTION ===== */
+#left-section::-webkit-scrollbar {
+    width: 8px;
+}
+#left-section::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+/* Chat Items */
+.chat1, .chat2, .chat3-rooms {
+    border-radius: 10px;
+    margin: 5px 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+.chat1:hover, .chat2:hover, .chat3-rooms:hover {
+    background: #f0f2f5;
+}
+
+.chat-room-h1 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* ===== RIGHT SECTION (Messages) ===== */
 #right-section {
     grid-area: right-section;
     height: 73vh;
     padding: 20px;
     overflow-y: auto;
+    background: #e5ddd5; /* WhatsApp chat bg */
+    scrollbar-width: thin;
+    scrollbar-color: #bbb #e5ddd5;
+}
+
+#right-section::-webkit-scrollbar {
+    width: 8px;
+}
+#right-section::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+/* Message Bubbles */
+.new-elem-div, .new-elem-div2 {
+    max-width: 70%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 20px;
+    word-wrap: break-word;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Incoming */
+.new-elem-div {
+    background: #fff;
+    align-self: flex-start;
+}
+
+/* Outgoing */
+.new-elem-div2 {
+    background: #dcf8c6;
+    margin-left: auto;
 }
 
 /* ===== FOOTER ===== */
@@ -58,56 +131,43 @@
     height: 7vh;
     display: flex;
     gap: 10px;
+    padding: 5px 20px;
+    background: #f0f2f5;
+    align-items: center;
+    border-top: 1px solid #ddd;
 }
 
-/* ===== INPUT & BUTTON ===== */
 input[type=text] {
-    width: 100%;
-    font-size: 18px;
-    padding: 8px;
+    flex: 1;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.2s;
+}
+
+input[type=text]:focus {
+    border-color: #075e54;
 }
 
 button {
-    width: 100px;
-}
-
-/* ===== CHAT LIST ===== */
-.chat1,
-.chat2,
-.chat3-rooms {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 5px;
+    padding: 8px 15px;
+    border-radius: 50%;
+    border: none;
+    background: #075e54;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.chat-room-h1 {
-    padding: 15px;
-}
-
-/* ===== MESSAGE BUBBLES ===== */
-.new-elem-div,
-.new-elem-div2 {
-    max-width: 70%;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 20px;
-    border: 1px solid black;
-    word-wrap: break-word;
-}
-
-.new-elem-div {
-    background: aqua;
-}
-
-.new-elem-div2 {
-    background: greenyellow;
-    margin-left: auto;
+button:hover {
+    background: #128c7e;
 }
 
 /* ===== ROOM VISIBILITY ===== */
-.room1,
-.room2 {
+.room1, .room2 {
     display: none;
 }
 
@@ -119,19 +179,11 @@ button {
     display: block;
 }
 
-/* ===== STATES ===== */
-.bgyellow {
-    background: yellow;
-}
-
-.bgwhite {
-    background: white;
-}
-
 /* ===== DELETE ICON ===== */
 .delete-img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -142,16 +194,16 @@ button {
             "header"
             "right-section"
             "footer";
+        border-radius: 0;
     }
 
     #left-section {
         display: none;
     }
 
-    .new-elem-div,
-    .new-elem-div2 {
+    .new-elem-div, .new-elem-div2 {
         max-width: 90%;
-        font-size: 14px;
+        font-size: 0.85rem;
     }
 
     input[type=text] {
